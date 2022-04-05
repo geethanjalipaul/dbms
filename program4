@@ -103,8 +103,6 @@ MariaDB [db1]> desc employees;
 MariaDB [db1]> insert into departments values(201,"Accounts");
 Query OK, 1 row affected (0.03 sec)
 
-MariaDB [db1]> insert into departments values(201,"Sales");
-ERROR 1062 (23000): Duplicate entry '201' for key 'PRIMARY'
 MariaDB [db1]> insert into departments values(202,"Sales");
 Query OK, 1 row affected (0.03 sec)
 
@@ -125,54 +123,21 @@ MariaDB [db1]> select * from departments;
 +---------------+-----------------+
 4 rows in set (0.00 sec)
 
-MariaDB [db1]> insert into employees values(1,'John','White','johnwhite@yahoo.com',001253654,1993/02/01,100,15000,10,204);
+MariaDB [db1]> insert into employees values(1,'John','White','johnwhite@yahoo.com',001253654,'1993/02/01',100,15000,10,204);
 Query OK, 1 row affected, 1 warning (0.04 sec)
 
-MariaDB [db1]> insert into employees values(2,'Martha','Susan','marthasusan@yahoo.com',008953654,1995/12/31,101,30000,20,204);
+MariaDB [db1]> insert into employees values(2,'Martha','Susan','marthasusan@yahoo.com',008953654,'1995/12/31',101,30000,20,204);
 Query OK, 1 row affected, 2 warnings (0.03 sec)
 
-MariaDB [db1]> insert into employees values(3,'Tom','patric','patrictom@gmail.com',00245872,1991/11/3,102,40000,30,203);
+MariaDB [db1]> insert into employees values(3,'Tom','patric','patrictom@gmail.com',00245872,'1991/11/3',102,40000,30,203);
 Query OK, 1 row affected, 1 warning (0.04 sec)
 
-MariaDB [db1]> insert into employees values(4,'Maria','Jose','mariaj@gmail.com',0023585872,1994/11/13,103,36000,40,202);
+MariaDB [db1]> insert into employees values(4,'Maria','Jose','mariaj@gmail.com',0023585872,'1994/11/13',103,36000,40,202);
 Query OK, 1 row affected, 1 warning (0.03 sec)
 
-MariaDB [db1]> insert into employees values(5,'Ronald','Roy','ronaldroy@gmail.com',0013253694,1995/08/2,102,36000,50,201);
+MariaDB [db1]> insert into employees values(5,'Ronald','Roy','ronaldroy@gmail.com',0013253694,'1995/08/2',102,36000,50,201);
 Query OK, 1 row affected, 1 warning (0.03 sec)
 
-MariaDB [db1]> select * from employees;
-+-------------+------------+-----------+----------------------+--------------+------------+--------+--------+------------+---------------+
-| employee_id | first_name | last_name | email                | phone_number | hire_date  | job_id | salary | manager_id | department_id |
-+-------------+------------+-----------+----------------------+--------------+------------+--------+--------+------------+---------------+
-|           1 | John       | White     | johnwhite@yahoo.com  | 1253654      | 0000-00-00 |    100 |  15000 |         10 |           204 |
-|           2 | Martha     | Susan     | marthasusan@yahoo.co | 8953654      | 0000-00-00 |    101 |  30000 |         20 |           204 |
-|           3 | Tom        | patric    | patrictom@gmail.com  | 245872       | 0000-00-00 |    102 |  40000 |         30 |           203 |
-|           4 | Maria      | Jose      | mariaj@gmail.com     | 23585872     | 0000-00-00 |    103 |  36000 |         40 |           202 |
-|           5 | Ronald     | Roy       | ronaldroy@gmail.com  | 13253694     | 2000-01-24 |    102 |  36000 |         50 |           201 |
-+-------------+------------+-----------+----------------------+--------------+------------+--------+--------+------------+---------------+
-5 rows in set (0.00 sec)
-
-MariaDB [db1]> MariaDB [db1]> update employee set hire_date='1993/02/01' where employee_id=1;
-ERROR 1054 (42S22): Unknown column 'employee_id' in 'where clause'
-MariaDB [db1]> update employees set hire_date='1993/02/01' where employee_id=1;
-Query OK, 1 row affected (0.05 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-MariaDB [db1]> update employees set hire_date='1995/12/31' where employee_id=2;
-Query OK, 1 row affected (0.03 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-MariaDB [db1]> update employees set hire_date='1991/11/3' where employee_id=3;
-Query OK, 1 row affected (0.03 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-MariaDB [db1]> update employees set hire_date='1994/11/13' where employee_id=4;
-Query OK, 1 row affected (0.03 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-MariaDB [db1]> update employees set hire_date='1995/08/2' where employee_id=5;
-Query OK, 1 row affected (0.02 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
 
 MariaDB [db1]> select * from employees;
 +-------------+------------+-----------+----------------------+--------------+------------+--------+--------+------------+---------------+
@@ -186,13 +151,19 @@ MariaDB [db1]> select * from employees;
 +-------------+------------+-----------+----------------------+--------------+------------+--------+--------+------------+---------------+
 5 rows in set (0.00 sec)
 
-MariaDB [db1]> alter table departments to dept;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'to dept' at line 1
 MariaDB [db1]> alter table departments rename to dept;
 Query OK, 0 rows affected (0.08 sec)
 
-MariaDB [db1]> selct * from dept;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'selct * from dept' at line 1
+MariaDB [db1]> desc dept;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| department_id   | int(11)     | NO   | PRI | NULL    |       |
+| department_name | varchar(10) | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+2 rows in set (0.02 sec)
+
+
 MariaDB [db1]> select * from dept;
 +---------------+-----------------+
 | department_id | department_name |
@@ -225,32 +196,8 @@ MariaDB [db1]> desc employees;
 +---------------+-------------+------+-----+---------+-------+
 10 rows in set (0.00 sec)
 
-MariaDB [db1]> ariaDB [db1]> desc employees;
-+---------------+-------------+------+-----+---------+-------+
-| Field         | Type        | Null | Key | Default | Extra |
-+---------------+-------------+------+-----+---------+-------+
-| employee_id   | int(11)     | NO   | PRI | NULL    |       |
-| first_name    | varchar(10) | YES  |     | NULL    |       |
-| last_name     | varchar(10) | YES  |     | NULL    |       |
-| email         | varchar(20) | YES  |     | NULL    |       |
-| phone_number  | mediumtext  | YES  |     | NULL    |       |
-| hire_date     | date        | YES  |     | NULL    |       |
-| job_id        | int(11)     | YES  |     | NULL    |       |
-| salary        | smallint(6) | YES  |     | NULL    |       |
-| manager_id    | int(11)     | YES  |     | NULL    |       |
-| department_id | int(11)     | YES  |     | NULL    |       |
-+---------------+-------------+------+-----+---------+-------+
-10 rows in set (0.00 sec)
 
-MariaDB [db1]> alter table employees add commision varchar(20);
-Query OK, 0 rows affected (0.37 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-MariaDB [db1]> update table employees modify commision int;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table employees modify commision int' at line 1
-MariaDB [db1]> alter table employees modify commision int;
-Query OK, 5 rows affected (0.58 sec)               
-Records: 5  Duplicates: 0  Warnings: 0
+MariaDB [db1]> alter table employees add  commision int
 
 
 MariaDB [db1]> update employees set commision=1000 where employee_id=1;
@@ -273,19 +220,18 @@ MariaDB [db1]> update employees set commision=900 where employee_id=5;
 Query OK, 1 row affected (0.03 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
-MariaDB [db1]> select * from employees;
-+-------------+------------+-----------+----------------------+--------------+------------+--------+--------+------------+---------------+-----------+
-| employee_id | first_name | last_name | email                | phone_number | hire_date  | job_id | salary | manager_id | department_id | commision |
-+-------------+------------+-----------+----------------------+--------------+------------+--------+--------+------------+---------------+-----------+
-|           1 | John       | White     | johnwhite@yahoo.com  | 1253654      | 1993-02-01 |    100 |  15000 |         10 |           204 |      1000 |
-|           2 | Martha     | Susan     | marthasusan@yahoo.co | 8953654      | 1995-12-31 |    101 |  30000 |         20 |           204 |       500 |
-|           3 | Tom        | patric    | patrictom@gmail.com  | 245872       | 1991-11-03 |    102 |  32767 |         30 |           203 |      1500 |
-|           4 | Maria      | Jose      | mariaj@gmail.com     | 23585872     | 1994-11-13 |    103 |  32767 |         40 |           202 |      1000 |
-|           5 | Ronald     | Roy       | ronaldroy@gmail.com  | 13253694     | 1995-08-02 |    102 |  32767 |         50 |           201 |       900 |
-+-------------+------------+-----------+----------------------+--------------+------------+--------+--------+------------+---------------+-----------+
-5 rows in set (0.00 sec)
+MariaDB [db1]> MariaDB [db1]> select employee_id,first_name,last_name,commision from employees;
+-------------+------------+-----------+-----------+
+| employee_id | first_name | last_name | commision |
++-------------+------------+-----------+-----------+
+|           1 | John       | White     |      1000 |
+|           2 | Martha     | Susan     |       500 |
+|           3 | Tom        | patric    |      1500 |
+|           4 | Maria      | Jose      |      1000 |
+|           5 | Ronald     | Roy       |       900 |
++-------------+------------+-----------+-----------+
 
-MariaDB [db1]> 
+
 MariaDB [db1]> alter table employees drop hire_date;
 Query OK, 0 rows affected (0.34 sec)
 Records: 0  Duplicates: 0  Warnings: 0
@@ -301,18 +247,29 @@ MariaDB [db1]> select * from employees;
 |           5 | Ronald     | Roy       | ronaldroy@gmail.com  | 13253694     |    102 |  32767 |         50 |           201 |       900 |
 +-------------+------------+-----------+----------------------+--------------+--------+--------+------------+---------------+-----------+
 5 rows in set (0.00 sec)
-ariaDB [db1]> select * from employees;
-+-------------+------------+-----------+----------------------+--------------+--------+--------+------------+---------------+-----------+
-| employee_id | first_name | last_name | email                | phone_number | job_id | salary | manager_id | department_id | commision |
-+-------------+------------+-----------+----------------------+--------------+--------+--------+------------+---------------+-----------+
-|           1 | John       | White     | johnwhite@yahoo.com  | 1253654      |    100 |  15000 |         10 |           204 |      1000 |
-|           2 | Martha     | Susan     | marthasusan@yahoo.co | 8953654      |    101 |  30000 |         20 |           204 |       500 |
-|           3 | Tom        | patric    | patrictom@gmail.com  | 245872       |    102 |  32767 |         30 |           203 |      1500 |
-|           5 | Ronald     | Roy       | ronaldroy@gmail.com  | 13253694     |    102 |  32767 |         50 |           201 |       900 |
-+-------------+------------+-----------+----------------------+--------------+--------+--------+------------+---------------+-----------+
-4 rows in set (0.00 sec)
 
-MariaDB [db1]> 
+MariaDB [db1]> select employee_id,first_name,last_name,salary from employees where salary>30000;
++-------------+------------+-----------+--------+
+| employee_id | first_name | last_name | salary |
++-------------+------------+-----------+--------+
+|           3 | Tom        | patric    |  40000 |
+|           5 | Ronald     | Roy       |  36000 |
++-------------+------------+-----------+--------+
+MariaDB [db1]> delete from employees where employee_id=4;
+Query OK, 1 row affected (0.02 sec)
+
+MariaDB [db1]> select employee_id,first_name,last_name from employees;
++-------------+------------+-----------+
+| employee_id | first_name | last_name |
++-------------+------------+-----------+
+|           1 | John       | White     |
+|           2 | Martha     | Susan     |
+|           3 | Tom        | patric    |
+|           5 | Ronald     | Roy       |
++-------------+------------+-----------+
+
+
+
 MariaDB [db1]> truncate table employees;
 Query OK, 0 rows affected (0.21 sec)
 
