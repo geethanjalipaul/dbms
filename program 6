@@ -19,32 +19,29 @@ MariaDB [(none)]> show databases;
 +--------------------+
 4 rows in set (0.00 sec)
 
-MariaDB [(none)]> use db;
+MariaDB [(none)]> use db3;
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
 
 Database changed
-MariaDB [db]> create table customer(cid int,cname varchar(15),salary int);
-Query OK, 0 rows affected (0.48 sec)
+MariaDB [db3]> create table customer(cid int,cname varchar(15),salary int);
+Query OK, 0 rows affected (0.24 sec)
 
 insert into customer values(123,'Arjun',25000);
 Query OK, 1 row affected (0.03 sec)
 
 MariaDB [db]> insert into customer values(125,'Nayana',35000);
 Query OK, 1 row affected (0.03 sec)
-
-MariaDB [db]> insert into customer values(120,'Athira',40000);
-Query OK, 1 row affected (0.03 sec)
-
-MariaDB [db]> select * from customer;
+MariaDB [db3]> select * from customer;
 +------+--------+--------+
 | cid  | cname  | salary |
 +------+--------+--------+
 |  123 | Arjun  |  25000 |
 |  125 | Nayana |  35000 |
-|  120 | Athira |  40000 |
 +------+--------+--------+
-3 rows in set (0.00 sec)
+2 rows in set (0.00 sec)
+
+
 
 MariaDB [db]> start transaction;
 Query OK, 0 rows affected (0.00 sec)
@@ -55,26 +52,40 @@ Query OK, 1 row affected (0.00 sec)
 MariaDB [db]> commit;
 Query OK, 0 rows affected (0.03 sec)
 
+
 MariaDB [db]> set autocommit=0;
 Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [db]> insert into customer values(120,'Athira',40000);
+Query OK, 1 row affected (0.00 sec)
 
 MariaDB [db]> insert into customer values(129,'John',12000);
 Query OK, 1 row affected (0.00 sec)
 
-MariaDB [db]> select * from customer;
+MariaDB [db3]> select * from customer;
 +------+--------+--------+
 | cid  | cname  | salary |
 +------+--------+--------+
 |  123 | Arjun  |  25000 |
 |  125 | Nayana |  35000 |
-|  120 | Athira |  40000 |
 |  128 | Anjana |  10000 |
+|  120 | Athira |  40000 |
 |  129 | John   |  12000 |
 +------+--------+--------+
 5 rows in set (0.00 sec)
 
 MariaDB [db]> delete from customer where cid=128;
 Query OK, 1 row affected (0.00 sec)
+MariaDB [db3]> select * from customer;
++------+--------+--------+
+| cid  | cname  | salary |
++------+--------+--------+
+|  123 | Arjun  |  25000 |
+|  125 | Nayana |  35000 |
+|  120 | Athira |  40000 |
+|  129 | John   |  12000 |
++------+--------+--------+
+4 rows in set (0.00 sec)
 
 MariaDB [db]> rollback;
 Query OK, 0 rows affected (0.44 sec)
@@ -82,72 +93,52 @@ Query OK, 0 rows affected (0.44 sec)
 MariaDB [db]> delete from customer where cid=125;
 Query OK, 1 row affected (0.00 sec)
 
-MariaDB [db]> select * from customer;
+MariaDB [db3]> select * from customer;
 +------+--------+--------+
 | cid  | cname  | salary |
 +------+--------+--------+
 |  123 | Arjun  |  25000 |
-|  120 | Athira |  40000 |
+|  125 | Nayana |  35000 |
 |  128 | Anjana |  10000 |
 +------+--------+--------+
 
 
-MariaDB [db]> rollback;
-Query OK, 0 rows affected (0.05 sec)
-
-MariaDB [db]> select * from customer;
-+------+---------+--------+
-| c_id | c_name  | salary |
-+------+---------+--------+
-|  123 | Ameen   |  25000 |
-|  124 | Arman   |  28000 |
-|  125 | arjun   |  22000 |
-|  126 | aravind |  21000 |
-+------+---------+--------+
-4 rows in set (0.00 sec)
-
-MariaDB [db]> savepoint sp;
-Query OK, 0 rows affected (0.00 sec)
-
-MariaDB [db]> select * from customer;
-+------+---------+--------+
-| c_id | c_name  | salary |
-+------+---------+--------+
-|  123 | Ameen   |  25000 |
-|  124 | Arman   |  28000 |
-|  125 | arjun   |  22000 |
-|  126 | aravind |  21000 |
-+------+---------+--------+
-4 rows in set (0.00 sec)
-
-MariaDB [db]> insert into customer values(127,'achu',18000);
-Query OK, 1 row affected (0.00 sec)
-
-MariaDB [db]> insert into customer values(128,'kichu',11000);
-Query OK, 1 row affected (0.00 sec)
-
 MariaDB [db]> savepoint sp1;
 Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [db3]>  insert into customer values(101,'Adithya',13000);
+Query OK, 1 row affected (0.00 sec)
+
+
+MariaDB [db]> savepoint sp2;
+Query OK, 0 rows affected (0.00 sec)
+MariaDB [db3]> select * from customer;
++------+---------+--------+
+| cid  | cname   | salary |
++------+---------+--------+
+|  123 | Arjun   |  25000 |
+|  125 | Nayana  |  35000 |
+|  128 | Anjana  |  10000 |
+|  101 | Adithya |  13000 |
++------+---------+--------+
+4 rows in set (0.00 sec)
+
 
 MariaDB [db]> insert into customer values(129,'anu',7000);
 Query OK, 1 row affected (0.00 sec)
 
-MariaDB [db]> insert into customer values(130,'sanu',6000);
-Query OK, 1 row affected (0.00 sec)
-
-MariaDB [db]> rollback to sp;
+MariaDB [db]> rollback to sp1;
 Query OK, 0 rows affected (0.00 sec)
 
-MariaDB [db]> select * from customer;
-+------+---------+--------+
-| c_id | c_name  | salary |
-+------+---------+--------+
-|  123 | Ameen   |  25000 |
-|  124 | Arman   |  28000 |
-|  125 | arjun   |  22000 |
-|  126 | aravind |  21000 |
-+------+---------+--------+
-4 rows in set (0.00 sec)
+MariaDB [db3]> select * from customer;
++------+--------+--------+
+| cid  | cname  | salary |
++------+--------+--------+
+|  123 | Arjun  |  25000 |
+|  125 | Nayana |  35000 |
+|  128 | Anjana |  10000 |
++------+--------+--------+
+
 
 
  
