@@ -1,0 +1,161 @@
+student@student-OptiPlex-3050:~$ sudo mysql -u root -p
+[sudo] password for student: 
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 33
+Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1 Ubuntu 16.04
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database db;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [(none)]> use db;
+Database changed
+MariaDB [db]> Database changed
+MariaDB [db1]> use db1;
+Database changed
+MariaDB [db1]> 
+
+Query OK, 0 rows affected (0.22 sec)
+MariaDB [db]> create table  students(rollno int,name varchar(20),address varchar(30),total int);
+Query OK, 0 rows affected (0.20 sec)
+
+MariaDB [db]> insert into students values(1,'Anna','Manakkal',76);
+Query OK, 1 row affected (0.02 sec)
+
+MariaDB [db]> insert into students values(2,'Ardhritha','Thappatt',65);
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db]> insert into students values(3,'George','Menacherry',72);
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [db]> insert into students values(4,'Aiswarya','kaipetty',96);
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db]> insert into students values(5,'Devika','Nelparambu',85);
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db]> select * from students;
++--------+-----------+------------+-------+
+| rollno | name      | address    | total |
++--------+-----------+------------+-------+
+|      1 | Anna      | Manakkal   |    76 |
+|      2 | Ardhritha | Thappatt   |    65 |
+|      3 | George    | Menacherry |    72 |
+|      4 | Aiswarya  | kaipetty   |    96 |
+|      5 | Devika    | Nelparambu |    85 |
++--------+-----------+------------+-------+
+5 rows in set (0.00 sec)
+
+MariaDB [db]> select rollno,address from students;
++--------+------------+
+| rollno | address    |
++--------+------------+
+|      1 | Manakkal   |
+|      2 | Thappatt   |
+|      3 | Menacherry |
+|      4 | kaipetty   |
+|      5 | Nelparambu |
++--------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [db]> select * from students where total>80;
++--------+----------+------------+-------+
+| rollno | name     | address    | total |
++--------+----------+------------+-------+
+|      4 | Aiswarya | kaipetty   |    96 |
+|      5 | Devika   | Nelparambu |    85 |
++--------+----------+------------+-------+
+
+
+MariaDB [db]> alter table students add grade varchar(2);
+Query OK, 0 rows affected (0.37 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [db]> update students set grade='C' where rollno=1;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db]> update students set grade='C' where rollno=2;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db]> update students set grade='C' where rollno=3;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db]> update students set grade='A' where rollno=4;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db]> update students set grade='B' where rollno=5;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db]> select * from students;
++--------+-----------+------------+-------+-------+
+| rollno | name      | address    | total | grade |
++--------+-----------+------------+-------+-------+
+|      1 | Anna      | Manakkal   |    76 | C     |
+|      2 | Ardhritha | Thappatt   |    65 | C     |
+|      3 | George    | Menacherry |    72 | C     |
+|      4 | Aiswarya  | kaipetty   |    96 | A     |
+|      5 | Devika    | Nelparambu |    85 | B     |
++--------+-----------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+
+MariaDB [db]> alter table students drop address;
+Query OK, 0 rows affected (0.48 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [db]> select * from students;
++--------+-----------+-------+-------+
+| rollno | name      | total | grade |
++--------+-----------+-------+-------+
+|      1 | Anna      |    76 | C     |
+|      2 | Ardhritha |    65 | C     |
+|      3 | George    |    72 | C     |
+|      4 | Aiswarya  |    96 | A     |
+|      5 | Devika    |    85 | B     |
++--------+-----------+-------+-------+
+5 rows in set (0.00 sec)
+
+
+MariaDB [db]> update students set total='92' where rollno=4; 
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+MariaDB [db]> select * from students;
++--------+-----------+-------+-------+
+| rollno | name      | total | grade |
++--------+-----------+-------+-------+
+|      1 | Anna      |    76 | C     |
+|      2 | Ardhritha |    65 | C     |
+|      3 | George    |    72 | C     |
+|      4 | Aiswarya  |    92 | A     |
+|      5 | Devika    |    85 | B     |
++--------+-----------+-------+-------+
+
+
+MariaDB [db]> alter table students modify name varchar(15);
+Query OK, 5 rows affected (0.69 sec)               
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [db]>  desc students;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollno | int(11)     | YES  |     | NULL    |       |
+| name   | varchar(15) | YES  |     | NULL    |       |
+| total  | int(11)     | YES  |     | NULL    |       |
+| grade  | varchar(2)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+
+
