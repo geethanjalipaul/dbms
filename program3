@@ -9,9 +9,6 @@ Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-MariaDB [(none)]> show databases
-    -> show databases;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show databases' at line 2
 MariaDB [(none)]> show databases;
 +--------------------+
 | Database           |
@@ -26,150 +23,93 @@ MariaDB [(none)]> show databases;
 MariaDB [(none)]> use db1;
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
-
 Database changed
-MariaDB [db1]> create table clientmaster(clientno varchar(10),name varchar(20),address varchar(50),city varchar(20),pincode int,state varchar(30));
-Query OK, 0 rows affected (0.21 sec)
 
-MariaDB [db1]> insert into clientmaster values(c0200,'Jaya','Plananickal','Thodupuzha',685584,'Kerala');
-ERROR 1054 (42S22): Unknown column 'c0200' in 'field list'
-MariaDB [db1]> insert into clientmaster values('c0200','Jaya','Plananickal','Thodupuzha',685584,'Kerala');
-Query OK, 1 row affected (0.03 sec)
+MariaDB [db1]> create table clientmaster(clientno varchar(20),name varchar(20),address varchar(20),city varchar(20),pincode int,state varchar(20));
+Query OK, 0 rows affected (0.23 sec)
 
-MariaDB [db1]> select * from clientmaster;
-+----------+------+-------------+------------+---------+--------+
-| clientno | name | address     | city       | pincode | state  |
-+----------+------+-------------+------------+---------+--------+
-| c0200    | Jaya | Plananickal | Thodupuzha |  685584 | Kerala |
-+----------+------+-------------+------------+---------+--------+
-1 row in set (0.00 sec)
-
-MariaDB [db1]> insert into clientmaster values('c0201','Maya','Njattuvetti','Kodungallur',685585,'Kerala');
-Query OK, 1 row affected (0.03 sec)
-
-MariaDB [db1]> select * from clientmaster;
-+----------+------+-------------+-------------+---------+--------+
-| clientno | name | address     | city        | pincode | state  |
-+----------+------+-------------+-------------+---------+--------+
-| c0200    | Jaya | Plananickal | Thodupuzha  |  685584 | Kerala |
-| c0201    | Maya | Njattuvetti | Kodungallur |  685585 | Kerala |
-+----------+------+-------------+-------------+---------+--------+
-2 rows in set (0.00 sec)
-
-MariaDB [db1]> insert into clientmaster values('c0202','Rashmi','Ayodhya','Udupur',894585,'Jammu Kashmir');
-Query OK, 1 row affected (0.03 sec)
-
-MariaDB [db1]> insert into clientmaster values('c0203','Megha','Ayushiri','Dehradun',794585,'Uttarkhand');
-Query OK, 1 row affected (0.03 sec)
-
-MariaDB [db1]> select * from clientmaster;
-+----------+--------+-------------+-------------+---------+---------------+
-| clientno | name   | address     | city        | pincode | state         |
-+----------+--------+-------------+-------------+---------+---------------+
-| c0200    | Jaya   | Plananickal | Thodupuzha  |  685584 | Kerala        |
-| c0201    | Maya   | Njattuvetti | Kodungallur |  685585 | Kerala        |
-| c0202    | Rashmi | Ayodhya     | Udupur      |  894585 | Jammu Kashmir |
-| c0203    | Megha  | Ayushiri    | Dehradun    |  794585 | Uttarkhand    |
-+----------+--------+-------------+-------------+---------+---------------+
-4 rows in set (0.00 sec)
-
-MariaDB [db1]> insert into clientmaster values('c0204','Preema','Nest','Thoraipakkam',294585,'Tamil Nadu');
-Query OK, 1 row affected (0.03 sec)
-
-MariaDB [db1]> select * from clientmaster;
-+----------+--------+-------------+--------------+---------+---------------+
-| clientno | name   | address     | city         | pincode | state         |
-+----------+--------+-------------+--------------+---------+---------------+
-| c0200    | Jaya   | Plananickal | Thodupuzha   |  685584 | Kerala        |
-| c0201    | Maya   | Njattuvetti | Kodungallur  |  685585 | Kerala        |
-| c0202    | Rashmi | Ayodhya     | Udupur       |  894585 | Jammu Kashmir |
-| c0203    | Megha  | Ayushiri    | Dehradun     |  794585 | Uttarkhand    |
-| c0204    | Preema | Nest        | Thoraipakkam |  294585 | Tamil Nadu    |
-+----------+--------+-------------+--------------+---------+---------------+
-5 rows in set (0.00 sec)
-
-MariaDB [db1]> select clientno,name from clientmaster;
-+----------+--------+
-| clientno | name   |
-+----------+--------+
-| c0200    | Jaya   |
-| c0201    | Maya   |
-| c0202    | Rashmi |
-| c0203    | Megha  |
-| c0204    | Preema |
-+----------+--------+
-5 rows in set (0.00 sec)
-
-MariaDB [db1]> insert into clientmaster values('c0205','Megha','Taltal','Dehradun',794586,'Uttarkhand');
+MariaDB [db1]> insert into clientmaster values('c0190','Wolski','Filtrowa','Helsinki',21240,'Finland');
 Query OK, 1 row affected (0.04 sec)
 
+riaDB [db1]> insert into clientmaster values('c0111','Kester','Cherryhills','Columbia',12468,'USA');
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db1]> insert into clientmaster values('c0205','Jaya','Ponath','Trissur',683012,'Kerala');
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db1]> insert into clientmaster values('c2000','Rani','Greenvilla','Bangalore',560001,'Karnataka');
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [db1]> insert into clientmaster values('c0107','Vishnu','Puthiyaveedu','Kochi',683501,'Kerala');
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [db1]> insert into clientmaster values('c0200','Jaya','Jeevantara','Sansadmarg',110001,'Delhi');
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [db1]> select * from clientmaster;
++----------+--------+--------------+------------+---------+-----------+
+| clientno | name   | address      | city       | pincode | state     |
++----------+--------+--------------+------------+---------+-----------+
+| c0190    | Wolski | Filtrowa     | Helsinki   |   21240 | Finland   |
+| c0111    | Kester | Cherryhills  | Columbia   |   12468 | USA       |
+| c0205    | Jaya   | Ponath       | Trissur    |  683012 | Kerala    |
+| c2000    | Rani   | Greenvilla   | Bangalore  |  560001 | Karnataka |
+| c0107    | Vishnu | Puthiyaveedu | Kochi      |  683501 | Kerala    |
+| c0200    | Jaya   | Jeevantara   | Sansadmarg |  110001 | Delhi     |
++----------+--------+--------------+------------+---------+-----------+
+6 rows in set (0.00 sec)
+
+
 MariaDB [db1]> select clientno,name from clientmaster;
 +----------+--------+
 | clientno | name   |
 +----------+--------+
+| c0190    | Wolski |
+| c0111    | Kester |
+| c0205    | Jaya   |
+| c2000    | Rani   |
+| c0107    | Vishnu |
 | c0200    | Jaya   |
-| c0201    | Maya   |
-| c0202    | Rashmi |
-| c0203    | Megha  |
-| c0204    | Preema |
-| c0205    | Megha  |
 +----------+--------+
-6 rows in set (0.01 sec)
 
-MariaDB [db1]> select * from clientmaster;
-+----------+--------+-------------+--------------+---------+---------------+
-| clientno | name   | address     | city         | pincode | state         |
-+----------+--------+-------------+--------------+---------+---------------+
-| c0200    | Jaya   | Plananickal | Thodupuzha   |  685584 | Kerala        |
-| c0201    | Maya   | Njattuvetti | Kodungallur  |  685585 | Kerala        |
-| c0202    | Rashmi | Ayodhya     | Udupur       |  894585 | Jammu Kashmir |
-| c0203    | Megha  | Ayushiri    | Dehradun     |  794585 | Uttarkhand    |
-| c0204    | Preema | Nest        | Thoraipakkam |  294585 | Tamil Nadu    |
-| c0205    | Megha  | Taltal      | Dehradun     |  794586 | Uttarkhand    |
-+----------+--------+-------------+--------------+---------+---------------+
-6 rows in set (0.01 sec)
-
-MariaDB [db1]> select distanct name from clientmaster;
-ERROR 1054 (42S22): Unknown column 'distanct' in 'field list'
 MariaDB [db1]> select distinct name from clientmaster;
 +--------+
 | name   |
 +--------+
+| Wolski |
+| Kester |
 | Jaya   |
-| Maya   |
-| Rashmi |
-| Megha  |
-| Preema |
+| Rani   |
+| Vishnu |
 +--------+
-5 rows in set (0.01 sec)
+5 rows in set (0.00 sec)
 
-MariaDB [db1]> select clientno,name,address,city from clientmaster order by name asec;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'asec' at line 1
 MariaDB [db1]> select clientno,name,address,city from clientmaster order by name asc;
-+----------+--------+-------------+--------------+
-| clientno | name   | address     | city         |
-+----------+--------+-------------+--------------+
-| c0200    | Jaya   | Plananickal | Thodupuzha   |
-| c0201    | Maya   | Njattuvetti | Kodungallur  |
-| c0203    | Megha  | Ayushiri    | Dehradun     |
-| c0205    | Megha  | Taltal      | Dehradun     |
-| c0204    | Preema | Nest        | Thoraipakkam |
-| c0202    | Rashmi | Ayodhya     | Udupur       |
-+----------+--------+-------------+--------------+
-6 rows in set (0.00 sec)
+
++----------+--------+--------------+------------+
+| clientno | name   | address      | city       |
++----------+--------+--------------+------------+
+| c0205    | Jaya   | Ponath       | Trissur    |
+| c0200    | Jaya   | Jeevantara   | Sansadmarg |
+| c0111    | Kester | Cherryhills  | Columbia   |
+| c2000    | Rani   | Greenvilla   | Bangalore  |
+| c0107    | Vishnu | Puthiyaveedu | Kochi      |
+| c0190    | Wolski | Filtrowa     | Helsinki   |
++----------+--------+--------------+------------+
 
 MariaDB [db1]> select clientno,name,address,city from clientmaster order by name desc;
-+----------+--------+-------------+--------------+
-| clientno | name   | address     | city         |
-+----------+--------+-------------+--------------+
-| c0202    | Rashmi | Ayodhya     | Udupur       |
-| c0204    | Preema | Nest        | Thoraipakkam |
-| c0203    | Megha  | Ayushiri    | Dehradun     |
-| c0205    | Megha  | Taltal      | Dehradun     |
-| c0201    | Maya   | Njattuvetti | Kodungallur  |
-| c0200    | Jaya   | Plananickal | Thodupuzha   |
-+----------+--------+-------------+--------------+
++----------+--------+--------------+------------+
+| clientno | name   | address      | city       |
++----------+--------+--------------+------------+
+| c0190    | Wolski | Filtrowa     | Helsinki   |
+| c0107    | Vishnu | Puthiyaveedu | Kochi      |
+| c2000    | Rani   | Greenvilla   | Bangalore  |
+| c0111    | Kester | Cherryhills  | Columbia   |
+| c0205    | Jaya   | Ponath       | Trissur    |
+| c0200    | Jaya   | Jeevantara   | Sansadmarg |
++----------+--------+--------------+------------+
 6 rows in set (0.00 sec)
+
 
 MariaDB [db1]> select clientno,name from clientmaster where clientno='c0200';
 +----------+------+
@@ -179,128 +119,72 @@ MariaDB [db1]> select clientno,name from clientmaster where clientno='c0200';
 +----------+------+
 1 row in set (0.00 sec)
 
-MariaDB [db1]> alter table clientmaster add telephone int,faxno int;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'int' at line 1
-MariaDB [db1]> alter table clientmaster add telephone int(10),faxno int(15);
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'int(15)' at line 1
 MariaDB [db1]> alter table clientmaster add telephone int(10);
 Query OK, 0 rows affected (0.58 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-MariaDB [db1]> alter table clientmaster add faxno int(15);
-Query OK, 0 rows affected (0.35 sec)
+MariaDB [db1]>  update clientmaster set telephone=001145678,faxno=8048 where clientno='c0190';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db1]>  update clientmaster set telephone=0011408127,faxno=00111 where clientno='c0111';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db1]>  update clientmaster set telephone=0484240789,faxno=2312 where clientno='c0205';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db1]>  update clientmaster set telephone=90943215,faxno=90089 where clientno='c2000';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db1]>  update clientmaster set telephone=940921286,faxno=600124 where clientno='c0107';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db1]>  update clientmaster set telephone=94089621,faxno=41247 where clientno='c0200';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db1]> select * from clientmaster;
++----------+--------+--------------+------------+---------+-----------+-----------+--------+
+| clientno | name   | address      | city       | pincode | state     | telephone | faxno  |
++----------+--------+--------------+------------+---------+-----------+-----------+--------+
+| c0190    | Wolski | Filtrowa     | Helsinki   |   21240 | Finland   |   1145678 |   8048 |
+| c0111    | Kester | Cherryhills  | Columbia   |   12468 | USA       |  11408127 |    111 |
+| c0205    | Jaya   | Ponath       | Trissur    |  683012 | Kerala    | 484240789 |   2312 |
+| c2000    | Rani   | Greenvilla   | Bangalore  |  560001 | Karnataka |  90943215 |  90089 |
+| c0107    | Vishnu | Puthiyaveedu | Kochi      |  683501 | Kerala    | 940921286 | 600124 |
+| c0200    | Jaya   | Jeevantara   | Sansadmarg |  110001 | Delhi     |  94089621 |  41247 |
++----------+--------+--------------+------------+---------+-----------+-----------+--------+
+6 rows in set (0.00 sec)
+
+MariaDB [db1]> alter table clientmaster modify faxno varchar(20);
+Query OK, 0 rows affected (0.00 sec)
 Records: 0  Duplicates: 0  Warnings: 0
-
-MariaDB [db1]> select * from clientmaster;
-+----------+--------+-------------+--------------+---------+---------------+-----------+-------+
-| clientno | name   | address     | city         | pincode | state         | telephone | faxno |
-+----------+--------+-------------+--------------+---------+---------------+-----------+-------+
-| c0200    | Jaya   | Plananickal | Thodupuzha   |  685584 | Kerala        |      NULL |  NULL |
-| c0201    | Maya   | Njattuvetti | Kodungallur  |  685585 | Kerala        |      NULL |  NULL |
-| c0202    | Rashmi | Ayodhya     | Udupur       |  894585 | Jammu Kashmir |      NULL |  NULL |
-| c0203    | Megha  | Ayushiri    | Dehradun     |  794585 | Uttarkhand    |      NULL |  NULL |
-| c0204    | Preema | Nest        | Thoraipakkam |  294585 | Tamil Nadu    |      NULL |  NULL |
-| c0205    | Megha  | Taltal      | Dehradun     |  794586 | Uttarkhand    |      NULL |  NULL |
-+----------+--------+-------------+--------------+---------+---------------+-----------+-------+
-6 rows in set (0.00 sec)
-
-MariaDB [db1]> update clientmaster set telephoneno=8129244235,faxno=1234;
-ERROR 1054 (42S22): Unknown column 'telephoneno' in 'field list'
-MariaDB [db1]> update clientmaster set telephone=8129244235,faxno=1234;
-Query OK, 6 rows affected, 6 warnings (0.04 sec)
-Rows matched: 6  Changed: 6  Warnings: 6
-
-MariaDB [db1]> select * from clientmaster;
-+----------+--------+-------------+--------------+---------+---------------+------------+-------+
-| clientno | name   | address     | city         | pincode | state         | telephone  | faxno |
-+----------+--------+-------------+--------------+---------+---------------+------------+-------+
-| c0200    | Jaya   | Plananickal | Thodupuzha   |  685584 | Kerala        | 2147483647 |  1234 |
-| c0201    | Maya   | Njattuvetti | Kodungallur  |  685585 | Kerala        | 2147483647 |  1234 |
-| c0202    | Rashmi | Ayodhya     | Udupur       |  894585 | Jammu Kashmir | 2147483647 |  1234 |
-| c0203    | Megha  | Ayushiri    | Dehradun     |  794585 | Uttarkhand    | 2147483647 |  1234 |
-| c0204    | Preema | Nest        | Thoraipakkam |  294585 | Tamil Nadu    | 2147483647 |  1234 |
-| c0205    | Megha  | Taltal      | Dehradun     |  794586 | Uttarkhand    | 2147483647 |  1234 |
-+----------+--------+-------------+--------------+---------+---------------+------------+-------+
-6 rows in set (0.00 sec)
-
-MariaDB [db1]> update clientmaster set telephone=7550047870,faxno=1256 where clientno='c0201'
-    -> update clientmaster set telephone=7550047870,faxno=1256 where clientno='c0201';
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'update clientmaster set telephone=7550047870,faxno=1256 where clientno='c0201'' at line 2
-MariaDB [db1]> update clientmaster set telephone=7550047870,faxno=1256 where clientno='c0201';
-Query OK, 1 row affected, 1 warning (0.03 sec)
-Rows matched: 1  Changed: 1  Warnings: 1
-
-MariaDB [db1]> select * from clientmaster;
-+----------+--------+-------------+--------------+---------+---------------+------------+-------+
-| clientno | name   | address     | city         | pincode | state         | telephone  | faxno |
-+----------+--------+-------------+--------------+---------+---------------+------------+-------+
-| c0200    | Jaya   | Plananickal | Thodupuzha   |  685584 | Kerala        | 2147483647 |  1234 |
-| c0201    | Maya   | Njattuvetti | Kodungallur  |  685585 | Kerala        | 2147483647 |  1256 |
-| c0202    | Rashmi | Ayodhya     | Udupur       |  894585 | Jammu Kashmir | 2147483647 |  1234 |
-| c0203    | Megha  | Ayushiri    | Dehradun     |  794585 | Uttarkhand    | 2147483647 |  1234 |
-| c0204    | Preema | Nest        | Thoraipakkam |  294585 | Tamil Nadu    | 2147483647 |  1234 |
-| c0205    | Megha  | Taltal      | Dehradun     |  794586 | Uttarkhand    | 2147483647 |  1234 |
-+----------+--------+-------------+--------------+---------+---------------+------------+-------+
-6 rows in set (0.00 sec)
-
-MariaDB [db1]> update clientmaster set telephone=75500478345,faxno=1248 where clientno='c0202';
-Query OK, 1 row affected, 1 warning (0.03 sec)
-Rows matched: 1  Changed: 1  Warnings: 1
-
-MariaDB [db1]> update clientmaster set telephone=9453896685,faxno=8345 where clientno='c0203';
-Query OK, 1 row affected, 1 warning (0.02 sec)
-Rows matched: 1  Changed: 1  Warnings: 1
-
-MariaDB [db1]> update clientmaster set telephone=9447458521,faxno=74598 where clientno='c0204';
-Query OK, 1 row affected, 1 warning (0.03 sec)
-Rows matched: 1  Changed: 1  Warnings: 1
-
-MariaDB [db1]> update clientmaster set telephone=8056825234,faxno=86998 where clientno='c0205';
-Query OK, 1 row affected, 1 warning (0.03 sec)
-Rows matched: 1  Changed: 1  Warnings: 1
-
-MariaDB [db1]> select * from clientmaster;
-+----------+--------+-------------+--------------+---------+---------------+------------+-------+
-| clientno | name   | address     | city         | pincode | state         | telephone  | faxno |
-+----------+--------+-------------+--------------+---------+---------------+------------+-------+
-| c0200    | Jaya   | Plananickal | Thodupuzha   |  685584 | Kerala        | 2147483647 |  1234 |
-| c0201    | Maya   | Njattuvetti | Kodungallur  |  685585 | Kerala        | 2147483647 |  1256 |
-| c0202    | Rashmi | Ayodhya     | Udupur       |  894585 | Jammu Kashmir | 2147483647 |  1248 |
-| c0203    | Megha  | Ayushiri    | Dehradun     |  794585 | Uttarkhand    | 2147483647 |  8345 |
-| c0204    | Preema | Nest        | Thoraipakkam |  294585 | Tamil Nadu    | 2147483647 | 74598 |
-| c0205    | Megha  | Taltal      | Dehradun     |  794586 | Uttarkhand    | 2147483647 | 86998 |
-+----------+--------+-------------+--------------+---------+---------------+------------+-------+
-6 rows in set (0.00 sec)
-
-MariaDB [db1]> alter table clientmaster modify faxno varchar(12);
-Query OK, 6 rows affected (0.66 sec)               
-Records: 6  Duplicates: 0  Warnings: 0
 
 MariaDB [db1]> desc clientmaster;
 +-----------+-------------+------+-----+---------+-------+
 | Field     | Type        | Null | Key | Default | Extra |
 +-----------+-------------+------+-----+---------+-------+
-| clientno  | varchar(10) | YES  |     | NULL    |       |
+| clientno  | varchar(20) | YES  |     | NULL    |       |
 | name      | varchar(20) | YES  |     | NULL    |       |
-| address   | varchar(50) | YES  |     | NULL    |       |
+| address   | varchar(20) | YES  |     | NULL    |       |
 | city      | varchar(20) | YES  |     | NULL    |       |
 | pincode   | int(11)     | YES  |     | NULL    |       |
-| state     | varchar(30) | YES  |     | NULL    |       |
-| telephone | int(10)     | YES  |     | NULL    |       |
-| faxno     | varchar(12) | YES  |     | NULL    |       |
+| state     | varchar(20) | YES  |     | NULL    |       |
+| telephone | varchar(20) | YES  |     | NULL    |       |
+| faxno     | varchar(20) | YES  |     | NULL    |       |
 +-----------+-------------+------+-----+---------+-------+
-8 rows in set (0.01 sec)
+8 rows in set (0.00 sec)
 
-MariaDB [db1]> delete clientmaster;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
-MariaDB [db1]> delete table clientmaster;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table clientmaster' at line 1
-MariaDB [db1]> drop clientmaster;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'clientmaster' at line 1
 MariaDB [db1]> drop table clientmaster;
 Query OK, 0 rows affected (0.11 sec)
 
-MariaDB [db1]> select * from clientmaster;
-ERROR 1146 (42S02): Table 'db1.clientmaster' doesn't exist
-MariaDB [db1]> 
+
+
+
+
+
 
