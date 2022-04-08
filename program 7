@@ -131,6 +131,17 @@ MariaDB [db1]> select title from books where price>500;
 +---------------------+
 2 rows in set (0.00 sec)
 
+MariaDB [db1]> select title from books where id in(select id from category where description!='Fiction');
++----------------+
+| title          |
++----------------+
+| the signalman  |
+| Battle of life |
+| War and peace  |
++----------------+
+3 rows in set (0.00 sec)
+
+
 MariaDB [db1]> select * from books where title like 'B%';
 +--------+----------------+-----------+------+------+------+-------+
 | bookid | title          | author_id | pid  | id   | year | price |
@@ -139,14 +150,14 @@ MariaDB [db1]> select * from books where title like 'B%';
 +--------+----------------+-----------+------+------+------+-------+
 1 row in set (0.00 sec)
 
-MariaDB [db1]> select title from books where year in(1996,1997,1998);
-+----------------+
-| title          |
-+----------------+
-| Harry Potter   |
-| Battle of life |
-| the signalman  |
-+----------------+
+MariaDB [db1]> select title, author.name,publisher.name from books left join author on author.author_id=books.author_id left join publisher on publisher.pid=books.pid where year in(1996,1997,1998);
++----------------+---------+---------+
+| title          | name    | name    |
++----------------+---------+---------+
+| Harry Potter   | Rowling | DC      |
+| Battle of life | Dickens | Rainbow |
+| the signalman  | Dickens | Rainbow |
++----------------+---------+---------+
 3 rows in set (0.00 sec)
 
 
