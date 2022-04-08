@@ -124,9 +124,6 @@ MariaDB [db3]> select * from customer;
 4 rows in set (0.00 sec)
 
 
-MariaDB [db]> insert into customer values(129,'anu',7000);
-Query OK, 1 row affected (0.00 sec)
-
 MariaDB [db]> rollback to sp1;
 Query OK, 0 rows affected (0.00 sec)
 

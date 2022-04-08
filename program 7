@@ -1,0 +1,160 @@
+MariaDB [db1]> create table author(author_id int primary key,name varchar(25),city varchar(25),country varchar(25));
+Query OK, 0 rows affected (0.22 sec)
+
+MariaDB [db1]> insert into author values(1,"Rowling","Yate","UK");
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [db1]> insert into author values(2,"Dickens","Landport","UK");
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db1]> insert into author values(3,"Tolstoy","Polyana","Russia");
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [db1]> insert into author values(4,"Arundhati","shillong","India");
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db1]> select * from author;
++-----------+-----------+----------+---------+
+| author_id | name      | city     | country |
++-----------+-----------+----------+---------+
+|         1 | Rowling   | Yate     | UK      |
+|         2 | Dickens   | Landport | UK      |
+|         3 | Tolstoy   | Polyana  | Russia  |
+|         4 | Arundhati | shillong | India   |
++-----------+-----------+----------+---------+
+
+MariaDB [db1]> create table publisher(pid int primary key,name varchar(25),city varchar(25),country varchar(25));
+Query OK, 0 rows affected (0.21 sec)
+
+MariaDB [db1]> insert into publisher values(100,"Notionpress","Mumbai","India");
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [db1]> insert into publisher values(10,"DC","Ernakulam","India");
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db1]> insert into publisher values(98,"Bluerose","Banglore","India");
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [db1]> insert into publisher values(32,"Rainbow","Noida","India");
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db1]> select * from publisher;
++-----+-------------+-----------+---------+
+| pid | name        | city      | country |
++-----+-------------+-----------+---------+
+|  10 | DC          | Ernakulam | India   |
+|  32 | Rainbow     | Noida     | India   |
+|  98 | Bluerose    | Banglore  | India   |
+| 100 | Notionpress | Mumbai    | India   |
++-----+-------------+-----------+---------+
+4 rows in set (0.00 sec)
+
+
+MariaDB [db1]> create table category(id int primary key,description varchar(50));
+Query OK, 0 rows affected (0.24 sec)
+
+MariaDB [db1]> insert into category values(20,"Fiction");
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db1]> insert into category values(21,"Horror");
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db1]> insert into category values(22,"Comedy");
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db1]> insert into category values(23,"Historical");
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db1]> select * from category;
++----+-------------+
+| id | description |
++----+-------------+
+| 20 | Fiction     |
+| 21 | Horror      |
+| 22 | Comedy      |
+| 23 | Historical  |
++----+-------------+
+
+4 rows in set (0.00 sec)
+MariaDB [db1]> create table books(bookid varchar(5) primary key,title varchar(25),author_id varchar(25) references author,pid int references publisher,id int references category,year int,price int);
+Query OK, 0 rows affected (0.25 sec)
+
+MariaDB [db1]> select * from books;
+Empty set (0.00 sec)
+
+MariaDB [db1]> insert into books values(001,"Harry Potter",1,10,20,1997,500);
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db1]> insert into books values(002,"Battle of life",2,32,22,1998,200);
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db1]> insert into books values(003,"the signalman",2,32,21,1996,250);
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db1]> insert into books values(004,"War and peace",3,98,23,1900,600);
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [db1]> insert into books values(005,"God of small things",4,100,20,2000,550);
+Query OK, 1 row affected (0.03 sec)
+
+
+MariaDB [db1]> select * from books
+    -> ;
++--------+---------------------+-----------+------+------+------+-------+
+| bookid | title               | author_id | pid  | id   | year | price |
++--------+---------------------+-----------+------+------+------+-------+
+| 1      | Harry Potter        | 1         |   10 |   20 | 1997 |   500 |
+| 2      | Battle of life      | 2         |   32 |   22 | 1998 |   200 |
+| 3      | the signalman       | 2         |   32 |   21 | 1996 |   250 |
+| 4      | War and peace       | 3         |   98 |   23 | 1900 |   600 |
+| 5      | God of small things | 4         |  100 |   20 | 2000 |   550 |
++--------+---------------------+-----------+------+------+------+-------+
+
+MariaDB [db1]> select bookid,title, price from books;
++--------+---------------------+-------+
+| bookid | title               | price |
++--------+---------------------+-------+
+| 1      | Harry Potter        |   500 |
+| 2      | Battle of life      |   200 |
+| 3      | the signalman       |   250 |
+| 4      | War and peace       |   600 |
+| 5      | God of small things |   550 |
++--------+---------------------+-------+
+5 rows in set (0.00 sec)
+
+MariaDB [db1]> select title from books where price>500;
++---------------------+
+| title               |
++---------------------+
+| War and peace       |
+| God of small things |
++---------------------+
+2 rows in set (0.00 sec)
+
+MariaDB [db1]> select * from books where title like 'B%';
++--------+----------------+-----------+------+------+------+-------+
+| bookid | title          | author_id | pid  | id   | year | price |
++--------+----------------+-----------+------+------+------+-------+
+| 2      | Battle of life | 2         |   32 |   22 | 1998 |   200 |
++--------+----------------+-----------+------+------+------+-------+
+1 row in set (0.00 sec)
+
+MariaDB [db1]> select title from books where year in(1996,1997,1998);
++----------------+
+| title          |
++----------------+
+| Harry Potter   |
+| Battle of life |
+| the signalman  |
++----------------+
+3 rows in set (0.00 sec)
+
+
+MariaDB [db1]> select * from books where price between 600 and 800;
++--------+---------------+-----------+------+------+------+-------+
+| bookid | title         | author_id | pid  | id   | year | price |
++--------+---------------+-----------+------+------+------+-------+
+| 4      | War and peace | 3         |   98 |   23 | 1900 |   600 |
++--------+---------------+-----------+------+------+------+-------+
+
+
