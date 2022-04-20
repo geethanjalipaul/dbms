@@ -1,0 +1,11 @@
+MariaDB [db5]> create table employee(emp_id int,emp_name varchar(20),city varchar(20),salary int, age int);
+Query OK, 0 rows affected (0.22 sec)
+
+MariaDB [db5]> insert into employee(1,'angelina','chicago',2000000,30);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '1,'angelina','chicago',2000000,30)' at line 1
+MariaDB [db5]> insert into employee values(1,'angelina','chicago',2000000,30);
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [db5]> insert into employee values(2,'robert','austin',3000000,26);
+Query OK, 1 row affected (0.04 sec)
+
