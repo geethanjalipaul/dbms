@@ -106,4 +106,96 @@ MariaDB [db5]> select * from Loans where Int_Rate!='NULL';
 +------+------------+-------------+-------------+----------+------------+----------+
 5 rows in set, 1 warning (0.00 sec)
 
+MariaDB [db5]> select distinct(Loan_Amount) from Loans;
++-------------+
+| Loan_Amount |
++-------------+
+|      300000 |
+|      500000 |
+|      800000 |
+|      200000 |
+|      700000 |
++-------------+
+5 rows in set (0.00 sec)
+
+MariaDB [db5]> select distinct(Instalments) from Loans;
++-------------+
+| Instalments |
++-------------+
+|          36 |
+|          48 |
+|          60 |
++-------------+
+3 rows in set (0.00 sec)
+
+MariaDB [db5]> select * from Loans where Start_Date>'2008-12-31' AND Instalments>36;
+Empty set (0.00 sec)
+
+MariaDB [db5]> select Cust_Name,Loan_Amount from Loans where Instalments!=36;
++------------+-------------+
+| Cust_Name  | Loan_Amount |
++------------+-------------+
+| S.P.Sharma |      500000 |
+| M.P.Yadhav |      800000 |
+| P.Sharma   |      700000 |
+| K.S.Dhall  |      500000 |
++------------+-------------+
+4 rows in set (0.00 sec)
+
+MariaDB [db5]> select Cust_Name,Loan_Amount from Loans where Loan_Amount<500000 OR Int_Rate>12;
++-----------+-------------+
+| Cust_Name | Loan_Amount |
++-----------+-------------+
+| R.K.Gupta |      300000 |
+| K.P.Jain  |      300000 |
+| S.P.Sinha |      200000 |
+| P.Sharma  |      700000 |
++-----------+-------------+
+4 rows in set (0.00 sec)
+
+MariaDB [db5]> select * from Loans where Loan_Amount BETWEEN 400000 AND 500000;
++------+------------+-------------+-------------+----------+------------+----------+
+| AccN | Cust_Name  | Loan_Amount | Instalments | Int_Rate | Start_Date | Interest |
++------+------------+-------------+-------------+----------+------------+----------+
+|    2 | S.P.Sharma |      500000 |          48 |       10 | 2008-03-22 |     1800 |
+|    7 | K.S.Dhall  |      500000 |          48 |     NULL | 2008-03-05 |     3800 |
++------+------------+-------------+-------------+----------+------------+----------+
+2 rows in set (0.00 sec)
+
+MariaDB [db5]> select * from Loans where Int_Rate>11  AND Int_Rate<12;
+Empty set (0.00 sec)
+
+MariaDB [db5]> select Cust_Name,Loan_Amount from Loans where Instalments IN(24,36,48);
++------------+-------------+
+| Cust_Name  | Loan_Amount |
++------------+-------------+
+| R.K.Gupta  |      300000 |
+| S.P.Sharma |      500000 |
+| K.P.Jain   |      300000 |
+| S.P.Sinha  |      200000 |
+| K.S.Dhall  |      500000 |
++------------+-------------+
+5 rows in set (0.00 sec)
+
+
+MariaDB [db5]> select AccN,Cust_Name,Loan_Amount from Loans where Cust_Name like '%Sharma';
++------+------------+-------------+
+| AccN | Cust_Name  | Loan_Amount |
++------+------------+-------------+
+|    2 | S.P.Sharma |      500000 |
+|    6 | P.Sharma   |      700000 |
++------+------------+-------------+
+2 rows in set (0.00 sec)
+
+MariaDB [db5]> select AccN,Cust_Name,Loan_Amount from Loans where Cust_Name like '%a';
++------+------------+-------------+
+| AccN | Cust_Name  | Loan_Amount |
++------+------------+-------------+
+|    1 | R.K.Gupta  |      300000 |
+|    2 | S.P.Sharma |      500000 |
+|    5 | S.P.Sinha  |      200000 |
+|    6 | P.Sharma   |      700000 |
++------+------------+-------------+
+4 rows in set (0.00 sec)
+
 
