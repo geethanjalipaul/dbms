@@ -382,6 +382,33 @@ MariaDB [db5]> select count(Cust_Name) from Loans where Interest is NULL;
 +------------------+
 1 row in set (0.00 sec)
 
+MariaDB [db5]> select interest,count(AccN) from Loans group by Interest order by Interest;
++----------+-------------+
+| interest | count(AccN) |
++----------+-------------+
+|    75000 |           1 |
+|   108000 |           1 |
+|   210000 |           1 |
+|   240000 |           1 |
+|   420000 |           1 |
+|   455000 |           1 |
++----------+-------------+
+6 rows in set (0.00 sec)
+
+MariaDB [db5]> select interest,count(AccN) from Loans where Instalments>=19 group by Interest order by Interest;
++----------+-------------+
+| interest | count(AccN) |
++----------+-------------+
+|    75000 |           1 |
+|   108000 |           1 |
+|   210000 |           1 |
+|   240000 |           1 |
+|   420000 |           1 |
+|   455000 |           1 |
++----------+-------------+
+6 rows in set (0.00 sec)
+
+
 
 MariaDB [db5]> select interest,count(AccN) from Loans where Instalments>5 group by Interest order by Interest;
 +----------+-------------+
