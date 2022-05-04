@@ -1,0 +1,26 @@
+PROGRAM 11
+
+set serveroutput on
+declare
+n number;
+f number;
+i number;
+begin
+f:=1;
+n:=&n;
+dbms_output.put_line('Enter the number:'||n);
+for i in 1..n loop
+	f:=f*i;
+end loop;
+dbms_output.put_line('Factorial='||f);
+end;
+/
+
+
+OUTPUT
+
+Enter value for n: 4
+old   7: n:=&n;
+new   7: n:=4;
+Enter the number:4
+Factorial=24
