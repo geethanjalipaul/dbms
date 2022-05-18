@@ -1,0 +1,20 @@
+PROGRAM 11
+
+set serveroutput on
+DECLARE
+	n number:=&n;
+begin
+if mod(n,2)=0 then
+	dbms_output.put_line('number is even number');
+else
+	dbms_output.put_line('number is odd number');
+end if;
+end;
+/
+
+
+OUTPUT
+Enter value for n: 45
+old   2:        n number:=&n;
+new   2:        n number:=45;
+number is odd number
