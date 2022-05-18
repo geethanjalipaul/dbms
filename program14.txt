@@ -1,0 +1,34 @@
+PROGRAM 14
+
+set serveroutput on
+declare 
+n number:=&n;
+temp number;
+s number:=0;
+begin
+temp:=n;
+while n>0 loop
+s:=(s*10)+mod(n,10);
+n:=floor(n/10);
+end loop;
+if(s=temp) then 
+dbms_output.put_line('number is a palindrome');
+else
+dbms_output.put_line('number is a not palindrome');
+end if;
+end;
+/
+
+
+OUTPUT
+
+Enter value for n: 232
+old   2: n number:=&n;
+new   2: n number:=232;
+number is a palindrome
+
+
+Enter value for n: 852
+old   2: n number:=&n;
+new   2: n number:=852;
+number is a not palindrome

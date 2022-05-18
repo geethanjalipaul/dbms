@@ -1,5 +1,21 @@
 PROGRAM 13
 
-
+set serveroutput on
+declare
+n number:=&n;
+rev number;
+begin
+rev:=0;
+while n>0 loop
+rev:=(rev*10)+mod(n,10);
+n:=floor(n/10);
+end loop;
+dbms_output.put_line('Reverse of the number is: ' || rev);
+end;
+/
 
 OUTPUT
+Enter value for n: 23456
+old   2: n number:=&n;
+new   2: n number:=23456;
+Reverse of the number is: 65432
