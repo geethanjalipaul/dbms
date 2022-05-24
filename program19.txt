@@ -1,0 +1,49 @@
+PROGRAM NO:19
+
+set serveroutput on
+
+declare
+n number:=&n;
+i number;
+result number;
+
+function prime(x in number) 
+return number
+is
+	temp number:=1;
+
+begin
+for i in  2..x/2 loop
+if mod(x,i)=0
+then
+temp:=0;
+exit;
+end if;
+end loop;
+return temp;
+end;
+ 
+begin
+result:=prime(n);
+if result=1 
+then
+dbms_output.put_line(n||'  is a prime');
+else
+dbms_output.put_line(n||'  is not a prime');
+end if;
+end;
+/
+
+
+
+OUTPUT
+
+Enter value for n: 11
+old   2: n number:=&n;
+new   2: n number:=11;
+11  is a prime
+
+Enter value for n: 10
+old   2: n number:=&n;
+new   2: n number:=10;
+10  is not a prime

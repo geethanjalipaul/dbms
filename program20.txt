@@ -1,0 +1,109 @@
+PROGRAM NO:20
+
+set serveroutput on;
+
+CREATE OR REPLACE TRIGGER display_salary_changes
+BEFORE DELETE OR INSERT OR UPDATE ON customer
+for each row
+when (new.id > 0)
+declare
+sal_diff number;
+begin
+sal_diff:= :NEW.salary - :OLD.salary;
+dbms_output.put_line('old salary:' || :OLD.salary);
+dbms_output.put_line('new salary:' || :NEW.salary);
+dbms_output.put_line('salary difference:' || sal_diff);
+end;
+/
+
+declare
+total_rows number(2);
+begin
+update customer
+set salary = salary+5000;
+if sql%notfound then
+dbms_output.put_line('no customers updated');
+elsif sql%found then
+total_rows:= sql%rowcount;
+dbms_output.put_line(total_rows || 'customers updated');
+end if;
+end;
+/
+
+
+OUTPUT
+
+SQL> create table customer(id int,name varchar(20), age int, address varchar(20), salary int);
+
+Table created.
+SQL> insert into customer values(1,'geo',28,'santacruz',25000);
+SQL> insert into customer values(2,'Joe',39,'greenlake',30000);
+SQL> insert into customer values(3,'Angel',41,'rockbridge',40000);
+SQL> insert into customer values(4,'lena',32,'emerald',15000);
+select * from customer;
+
+        ID NAME                        AGE ADDRESS                  SALARY
+---------- -------------------- ---------- -------------------- ----------
+         1 geo                          28 santacruz                 25000
+         2 Joe                          39 greenlake                 30000
+         3 Angel                        41 rockbridge                40000
+         4 lena                         32 emerald                   15000
+
+SQL> @t2
+
+Trigger created.
+
+old salary:25000
+new salary:30000
+salary difference:5000
+old salary:30000
+new salary:35000
+salary difference:5000
+old salary:40000
+new salary:45000
+salary difference:5000
+old salary:15000
+new salary:20000
+salary difference:5000
+4customer updated
+
+PL/SQL procedure successfully completed.
+
+SQL> insert into customer values(7,'kriti',22,'hp',7500);
+old salary:
+new salary:7500
+salary difference:
+1 row created.
+
+
+SQL> @P1
+old salary:30000
+new salary:35000
+salary difference:5000
+old salary:35000
+new salary:40000
+salary difference:5000
+old salary:45000
+new salary:50000
+salary difference:5000
+old salary:20000
+new salary:25000
+salary difference:5000
+old salary:7500
+new salary:12500
+salary difference:5000
+5customer updated
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from customer;
+
+        ID NAME                        AGE ADDRESS                  SALARY
+---------- -------------------- ---------- -------------------- ----------
+         1 geo                          28 santacruz                 35000
+         2 Joe                          39 greenlake                 40000
+         3 Angel                        41 rockbridge                50000
+         4 lena                         32 emerald                   25000
+         7 kriti                        22 hp                        12500
+
+

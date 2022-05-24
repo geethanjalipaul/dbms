@@ -1,0 +1,37 @@
+PROGRAM NO:17
+
+set serveroutput on
+
+declare
+a number:=&a;
+b number:=&b;
+temp number;
+
+
+procedure swap(x in out number,y in out number) is
+begin
+temp:=x;
+x:=y;
+y:=temp;
+dbms_output.put_line('After swapping  Num1='||x||' Num2='||y);
+end;
+
+begin
+dbms_output.put_line('Before swapping Num1='||a||' Num2='||b);
+swap(a,b);
+
+end;
+/
+
+
+
+OUTPUT
+
+Enter value for a: 20
+old   2: a number:=&a;
+new   2: a number:=20;
+Enter value for b: 30
+old   3: b number:=&b;
+new   3: b number:=30;
+Before swapping Num1=20 Num2=30
+After swapping  Num1=30 Num2=20

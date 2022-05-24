@@ -1,0 +1,24 @@
+PROGRAM NO:16
+
+set serveroutput on
+
+declare
+a number:=&a;
+b number;
+
+procedure findmin(x in number,y out number) is
+begin
+y:=x*x;
+end;
+
+begin
+findmin(a,b);
+dbms_output.put_line('Square of the number'||a||' is:'||b);
+end;
+/
+
+OUTPUT
+Enter value for a: 11
+old   2: a number:=&a;
+new   2: a number:=11;
+Square of the number11 is:121

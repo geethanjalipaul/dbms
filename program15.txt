@@ -1,0 +1,33 @@
+PROGRAM NO:15
+
+set serveroutput on
+
+declare
+a number:=&a;
+b number:=&b;
+c number;
+
+procedure findmin(x in number,y in number,z out number) is
+begin
+if x<y then 
+z:=x;
+else 
+z:=y;
+end if;
+end;
+
+begin
+findmin(a,b,c);
+dbms_output.put_line('Mininum number is:'||c);
+end;
+/
+
+
+OUTPUT
+Enter value for a: 100
+old   2: a number:=&a;
+new   2: a number:=100;
+Enter value for b: 30
+old   3: b number:=&b;
+new   3: b number:=30;
+Mininum number is:30

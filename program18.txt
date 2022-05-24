@@ -1,0 +1,45 @@
+PROGRAM NO:18
+
+set serveroutput on
+
+declare
+a number:=&a;
+b number:=&b;
+c number;
+
+function findmax(x in number,y in number) 
+return number 
+is
+z number;
+begin
+if x<y then 
+z:=y;
+else 
+z:=x;
+end if;
+return z;
+end;
+
+begin
+c:=findmax(a,b);
+dbms_output.put_line('Maximum number is:'||c);
+end;
+/
+
+
+
+
+
+
+
+
+
+OUTPUT
+
+Enter value for a: 24
+old   2: a number:=&a;
+new   2: a number:=24;
+Enter value for b: 56
+old   3: b number:=&b;
+new   3: b number:=56;
+Maximum of numbers is:56
