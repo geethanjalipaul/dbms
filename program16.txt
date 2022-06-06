@@ -6,13 +6,13 @@ declare
 a number:=&a;
 b number;
 
-procedure findmin(x in number,y out number) is
+procedure square(x in number,y out number) is
 begin
 y:=x*x;
 end;
 
 begin
-findmin(a,b);
+square(a,b);
 dbms_output.put_line('Square of the number'||a||' is:'||b);
 end;
 /

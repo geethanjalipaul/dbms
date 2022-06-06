@@ -76,34 +76,5 @@ salary difference:
 1 row created.
 
 
-SQL> @P1
-old salary:30000
-new salary:35000
-salary difference:5000
-old salary:35000
-new salary:40000
-salary difference:5000
-old salary:45000
-new salary:50000
-salary difference:5000
-old salary:20000
-new salary:25000
-salary difference:5000
-old salary:7500
-new salary:12500
-salary difference:5000
-5customer updated
-
-PL/SQL procedure successfully completed.
-
-SQL> select * from customer;
-
-        ID NAME                        AGE ADDRESS                  SALARY
----------- -------------------- ---------- -------------------- ----------
-         1 geo                          28 santacruz                 35000
-         2 Joe                          39 greenlake                 40000
-         3 Angel                        41 rockbridge                50000
-         4 lena                         32 emerald                   25000
-         7 kriti                        22 hp                        12500
 
 
