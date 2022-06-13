@@ -1,0 +1,62 @@
+PROGRAM NO:21
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> create table emp(id int,name varchar(20),salary int);
+
+Table created.
+
+SQL> insert into emp values(1,'Mohit',35000);
+
+1 row created.
+
+SQL> insert into emp values(2,'shreya',30000);
+
+1 row created.
+
+SQL> insert into emp values(3,'Sheetal',45000);
+
+1 row created.
+
+SQL> insert into emp values(4,'Sonal',25000);
+
+1 row created.
+
+SQL> insert into emp values(5,'Thejus',32000);
+
+1 row created.
+
+SQL> select * from emp;
+
+        ID NAME                     SALARY
+---------- -------------------- ----------
+         1 Mohit                     35000
+         2 shreya                    30000
+         3 Sheetal                   45000
+         4 Sonal                     25000
+         5 Thejus                    32000
+
