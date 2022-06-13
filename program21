@@ -1,5 +1,31 @@
 PROGRAM NO:21
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 SQL> create table emp(id int,name varchar(20),salary int);
 
 Table created.
@@ -34,26 +60,3 @@ SQL> select * from emp;
          4 Sonal                     25000
          5 Thejus                    32000
 
-SQL> @c2
-5employees selected
-
-PL/SQL procedure successfully completed.
-
-SQL> select * from emp;
-
-        ID NAME                     SALARY
----------- -------------------- ----------
-         1 Mohit                     35500
-         2 shreya                    30500
-         3 Sheetal                   45500
-         4 Sonal                     25500
-         5 Thejus                    32500
-
-SQL> @cursor
-1Mohit  35500
-2shreya 30500
-3Sheeta l45500
-4Sonal  25500
-5Thejus 32500
-
-PL/SQL procedure successfully completed.
