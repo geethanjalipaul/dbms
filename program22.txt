@@ -1,31 +1,24 @@
-PROGRAM NO:22
+﻿PROGRAM NO:22
 
+set serveroutput on;
+declare
+	eid customers.id%type;
+	ename customers.name%type;
+	esal customers.salary%type;
+	cursor c_customers is
+		select id,name,salary from customers;
+begin
+	open c_customers;
+	loop
+	fetch c_customers into eid,ename,esal;
+		exit when c_customers%notfound;
+		dbms_output.put_line(eid || ' ' || ename || ' ' ||esal);
+	end loop;
+	close c_customers;
+end;
+/
 
-
-
-
-
-
-
-
-
-
-
-
-SQL> @c2
-5employees selected
-
-PL/SQL procedure successfully completed.
-
-SQL> select * from emp;
-
-        ID NAME                     SALARY
----------- -------------------- ----------
-         1 Mohit                     35500
-         2 shreya                    30500
-         3 Sheetal                   45500
-         4 Sonal                     25500
-         5 Thejus                    32500
+OUTPUT:
 
 SQL> @cursor
 1Mohit  35500

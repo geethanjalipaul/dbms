@@ -1,30 +1,21 @@
 PROGRAM NO:21
 
+set Serveroutput on;
+declare
+	total_rows number(2);
+begin
+	update customers set salary=salary + 500;
+	if sql%notfound then
+		dbms_output.put_line('No customers selected');
+	elsif sql%found then
+		total_rows := sql%rowcount;
+		dbms_output.put_line(total_rows || ' Customers selected ');
+	end if;
+end;
+/
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+OUTPUT:
 
 SQL> create table emp(id int,name varchar(20),salary int);
 
@@ -60,3 +51,8 @@ SQL> select * from emp;
          4 Sonal                     25000
          5 Thejus                    32000
 
+
+SQL> @c2
+5employees selected
+
+PL/SQL procedure successfully completed.
